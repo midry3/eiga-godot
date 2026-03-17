@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b1rjg3ln2kdhl"]
+
+[ext_resource type="Script" uid="uid://dfyw1jaft3ty5" path="res://test_scene.gd" id="1_ia1lp"]
+[ext_resource type="Script" uid="uid://b18lhaal84yvb" path="res://addons/eiga/modules/eiga.gd" id="1_uhqqe"]
+
+[node name="TestScene" type="Node2D" unique_id=1386669705]
+script = ExtResource("1_ia1lp")
+
+[node name="Eiga" type="Node2D" parent="." unique_id=1541576102]
+script = ExtResource("1_uhqqe")
+metadata/_custom_type_script = "uid://b18lhaal84yvb"

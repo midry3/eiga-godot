@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://b1rjg3ln2kdhl"]
+
+[ext_resource type="Script" uid="uid://dfyw1jaft3ty5" path="res://test_scene.gd" id="1_ia1lp"]
+[ext_resource type="Script" uid="uid://b18lhaal84yvb" path="res://addons/eiga/modules/eiga.gd" id="2_ia1lp"]
+[ext_resource type="Resource" uid="uid://c3k6io2o2v0g" path="res://sample.e" id="3_coq8p"]
+[ext_resource type="Script" uid="uid://dcul0pf1rnh4g" path="res://addons/eiga/modules/eiga_character.gd" id="4_coq8p"]
+[ext_resource type="PackedScene" uid="uid://dxik4up2t8s1q" path="res://addons/eiga/modules/eiga.tscn" id="5_2nij2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sasra"]
+bg_color = Color(0, 0, 0, 0.5176471)
+
+[node name="TestScene" type="Node2D" unique_id=1386669705]
+script = ExtResource("1_ia1lp")
+
+[node name="Eiga" type="Control" parent="." unique_id=1550406259]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_ia1lp")
+eiga_script = ExtResource("3_coq8p")
+metadata/_custom_type_script = "uid://b18lhaal84yvb"
+
+[node name="CharacterA" type="CharacterBody2D" parent="Eiga" unique_id=397767656]
+position = Vector2(120, 54)
+script = ExtResource("4_coq8p")
+show_name = "キャラ1"
+metadata/_custom_type_script = "uid://dcul0pf1rnh4g"
+
+[node name="CharacterB" type="CharacterBody2D" parent="Eiga" unique_id=273284935]
+visible = false
+script = ExtResource("4_coq8p")
+show_name = "キャラ2"
+metadata/_custom_type_script = "uid://dcul0pf1rnh4g"
+
+[node name="Script" type="RichTextLabel" parent="." unique_id=675756514]
+offset_top = 299.0
+offset_right = 1153.0
+offset_bottom = 642.0
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_sasra")
+
+[node name="Label" type="Label" parent="." unique_id=1142598723]
+offset_left = 20.0
+offset_top = 216.0
+offset_right = 185.0
+offset_bottom = 299.0
+theme_override_font_sizes/font_size = 60
+text = "aaa"
+
+[node name="Eiga2" parent="." unique_id=1523473499 instance=ExtResource("5_2nij2")]
+
+[connection signal="add_text" from="Eiga" to="." method="_on_eiga_add_text"]
+[connection signal="init_text" from="Eiga" to="." method="_on_eiga_init_text"]
+[connection signal="scene_trans" from="Eiga" to="." method="_on_eiga_scene_trans"]
+[connection signal="speaker_changed" from="Eiga" to="." method="_on_eiga_speaker_changed"]
