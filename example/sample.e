@@ -1,6 +1,7 @@
 @CharacterA
 [&call("CharacterA.pr", "A")]
-abc[pause()]
+abc
+[pause()]
 def
 
 @CharacterB

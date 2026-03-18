@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dxik4up2t8s1q"]
+
+[ext_resource type="Script" uid="uid://b18lhaal84yvb" path="res://addons/eiga/modules/eiga.gd" id="1_paqfv"]
+
+[node name="Eiga" type="Control" unique_id=1523473499]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_paqfv")
