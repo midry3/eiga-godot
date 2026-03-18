@@ -1,21 +1,15 @@
 @CharacterA
-テスト
+[&call("CharacterA.pr", "A")]
+abc[pause()]
+def
 
 @CharacterB
-[move("right", 2, 100)]
-例えば[wait(0.5)].[wait(.5)].[wait(.5)].
-
-@-
-[call("fn")]
-[&move("right", 3, 200)]
-ajsiojsoisjoisjslilslinsjlknmk
-[pause()]jisjosjoisjosk
-[term()]だ！
-
-
-@
-[call("CharacterA.pr", "Hello World")]
-[zoom("x", "y", "scale")]
+aaaaa
+[call("CharacterA.pr", "B", 5)]
+bbbbb
+[&call("CharacterA.pr", "C", 5)]
+[call("CharacterA.pr", "D", 2)]
+cccccc
 
 
 -> uid://nbcciyufjgou # 飛ぶシーン

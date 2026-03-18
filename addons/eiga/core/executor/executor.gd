@@ -1,6 +1,6 @@
 extends Node
 class_name Executor
-signal func_called(func_name: String, args: Array)
+signal func_called(func_name: String, wait: bool, args: Array)
 signal add_text(serif: String)
 signal init_text
 signal speaker_changed(speaker: String)
@@ -8,9 +8,12 @@ signal scene_trans(scene: StringName)
 signal next
 signal wait(time: float)
 signal waited
+signal wait_all_call
+signal call_finished
 
 var eiga_script: EigaScript
 var current_pos := 0
+var can_next := true
 
 func _init(eiga_script: EigaScript):
 	self.eiga_script = eiga_script
@@ -33,9 +36,11 @@ func execute() -> void:
 						EigaSpecific.Function.PAUSE:
 							await next
 						EigaSpecific.Function.CALL:
-							func_called.emit(s.args[0], s.args.slice(1, s.args.size()))
+							func_called.emit(s.args[0], s.wait, s.args.slice(1, s.args.size()))
+							await call_finished
 			EigaSpecific.Action.TRANS:
 				scene_trans.emit(inst.info.value)
+		wait_all_call.emit()
 		current_pos += 1
 		await next
 

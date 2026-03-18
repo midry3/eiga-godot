@@ -84,7 +84,6 @@ static func parse(text: String) -> Array[EigaDialogueScriptInfo]:
 				"show": func_enum = EigaSpecific.Function.SHOW
 				"wait": func_enum = EigaSpecific.Function.WAIT
 				"pause": func_enum = EigaSpecific.Function.PAUSE
-				"term": func_enum = EigaSpecific.Function.TERM
 				"call": func_enum = EigaSpecific.Function.CALL
 			res.append(EigaDialogueScriptInfo.new(func_enum, args, wait_flag))
 		else:
@@ -99,7 +98,6 @@ static func parse(text: String) -> Array[EigaDialogueScriptInfo]:
 	for r in res:
 		if r.function == EigaSpecific.Function.SHOW:
 			r.args[0] = r.args[0].lstrip("\n")
-			break
 	for idx in range(len(res)-1, 0, -1):
 		if res[idx].function == EigaSpecific.Function.SHOW:
 			res[idx].args[0] = res[idx].args[0].rstrip("\n")
