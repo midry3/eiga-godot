@@ -11,7 +11,7 @@ func _get_recognized_extensions():
 	return [EigaSpecific.EIGA_SCRIPT_EXT]
 	
 func _get_save_extension():
-	return "res"
+	return "tres"
 	
 func _get_resource_type():
 	return "Resource"
@@ -21,6 +21,6 @@ func _get_import_options(path, preset_index):
 
 func _import(source_file, save_path, options, platform_variants, gen_files):
 	var res :=  EigaParser.parse(source_file)
-	if len(res.scripts) == 0:
-		return ERR_BUG
-	return ResourceSaver.save(res, "%s.%s" % [save_path, _get_save_extension()])
+	if res.ok:
+		return ResourceSaver.save(res, "%s.%s" % [save_path, _get_save_extension()])
+	return ERR_BUG

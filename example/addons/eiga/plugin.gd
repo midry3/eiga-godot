@@ -28,7 +28,10 @@ func _enter_tree():
 	add_import_plugin(importer)
 	loader = EigaScriptLoader.new()
 	ResourceLoader.add_resource_format_loader(loader)
-	editor = EigaScriptEditor.new()
+	var default_font_size := get_editor_interface().get_editor_settings().get_setting("interface/editor/code_font_size")
+	if default_font_size == null:
+		default_font_size = 32
+	editor = EigaScriptEditor.new(default_font_size)
 	get_editor_interface().get_editor_main_screen().add_child(editor)
 	editor.set_anchors_preset(Control.PRESET_FULL_RECT)
 	editor.size_flags_horizontal = Control.SIZE_EXPAND_FILL

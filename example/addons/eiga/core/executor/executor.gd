@@ -2,6 +2,7 @@ extends Node
 class_name Executor
 signal func_called(func_name: String, wait: bool, args: Array)
 signal add_text(serif: String)
+signal added_text
 signal init_text
 signal speaker_changed(speaker: String)
 signal scene_trans(scene: StringName)
@@ -30,6 +31,7 @@ func execute() -> void:
 					match s.function:
 						EigaSpecific.Function.SHOW:
 							add_text.emit(s.args[0])
+							await added_text
 						EigaSpecific.Function.WAIT:
 							wait.emit(s.args[0])
 							await waited
@@ -43,6 +45,3 @@ func execute() -> void:
 		wait_all_call.emit()
 		current_pos += 1
 		await next
-
-func script_executor() -> void:
-	pass

@@ -3,6 +3,10 @@ class_name EigaScriptEditor
 
 var tabs: TabContainer
 var opening
+var current_font_size: int
+
+func _init(default_font_size: int):
+	current_font_size = default_font_size
 
 func _ready():
 	opening = {}
@@ -36,6 +40,7 @@ func open(res) -> void:
 		code_edit.set_anchors_preset(Control.PRESET_FULL_RECT)
 		code_edit.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		code_edit.size_flags_vertical = Control.SIZE_EXPAND_FILL
+		apply_font_size(code_edit)
 		tabs.set_tab_title(code_edit.get_index(), res.resource_path.get_file())
 		tabs.current_tab = code_edit.get_index()
 		opening[res] = code_edit
@@ -47,3 +52,21 @@ func save_all() -> void:
 func save(res) -> void:
 	var f := FileAccess.open(res.resource_path, FileAccess.WRITE)
 	f.store_string(opening[res].text)
+
+func add_font_size(delta: int) -> void:
+	current_font_size += delta
+	for k in opening:
+		apply_font_size(opening[k])
+
+func apply_font_size(editor: CodeEdit) -> void:
+	editor.add_theme_font_size_override("font_size", current_font_size)
+
+func _gui_input(event):
+	if event is InputEventMouseButton:
+		if event.ctrl_pressed:
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				add_font_size(1)
+				accept_event()
+			elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				add_font_size(-1)
+				accept_event()

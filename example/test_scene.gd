@@ -12,7 +12,10 @@ func _on_eiga_scene_trans(scene):
 
 
 func _on_eiga_add_text(text):
-	script_.text += text
+	for t in text:
+		script_.text += t
+		await get_tree().create_timer(0.1).timeout
+	eiga.emit_added_text()
 
 func _on_eiga_init_text():
 	script_.text = ""

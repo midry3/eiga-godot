@@ -3,12 +3,12 @@
 importer="eiga"
 type="Resource"
 uid="uid://c3k6io2o2v0g"
-path="res://.godot/imported/sample.e-89eea258219f1bb4c294792bbaf00478.res"
+path="res://.godot/imported/sample.e-89eea258219f1bb4c294792bbaf00478.tres"
 
 [deps]
 
 source_file="res://sample.e"
-dest_files=["res://.godot/imported/sample.e-89eea258219f1bb4c294792bbaf00478.res"]
+dest_files=["res://.godot/imported/sample.e-89eea258219f1bb4c294792bbaf00478.tres"]
 
 [params]
 

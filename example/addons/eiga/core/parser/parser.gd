@@ -5,6 +5,7 @@ const COMMENT := "#"
 
 static func parse(path: String) -> EigaScript:
 	var none := EigaScript.new()
+	none.ok = false
 	var f := FileAccess.open(path, FileAccess.READ)
 	if f == null:
 		return none
@@ -50,6 +51,7 @@ static func parse(path: String) -> EigaScript:
 				return none
 			last.info.value += script + "\n"
 	var eiga := EigaScript.new()
+	eiga.ok = true
 	eiga.scripts = scripts
 	eiga.raw_text = raw_text
 	return eiga	

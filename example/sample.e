@@ -1,6 +1,6 @@
 @CharacterA
 aaaaa
-[call("a", true)]
+[&call("CharacterA.pr", "a", 3)]
 [pause()]
 nbbb
 sss 
