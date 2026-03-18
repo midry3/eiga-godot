@@ -24,6 +24,7 @@ func _run() -> void:
 	executor.speaker_changed.connect(
 		func(speaker: String):
 			calls_finished.clear()
+			wait_all_call_finished = false
 			if speaker == "":
 				speaker_changed.emit("")
 			else:
