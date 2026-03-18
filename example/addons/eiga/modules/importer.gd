@@ -20,6 +20,7 @@ func _get_import_options(path, preset_index):
 	return []
 
 func _import(source_file, save_path, options, platform_variants, gen_files):
-	var res := EigaScript.new()
-	res.scripts = EigaParser.parse(source_file)
+	var res :=  EigaParser.parse(source_file)
+	if len(res.scripts) == 0:
+		return ERR_BUG
 	return ResourceSaver.save(res, "%s.%s" % [save_path, _get_save_extension()])

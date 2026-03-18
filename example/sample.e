@@ -1,16 +1,8 @@
 @CharacterA
-[&call("CharacterA.pr", "A")]
-abc
-[pause()]
-def
-
-@CharacterB
 aaaaa
-[call("CharacterA.pr", "B", 5)]
-bbbbb
-[&call("CharacterA.pr", "C", 5)]
-[call("CharacterA.pr", "D", 2)]
-cccccc
+[call("a", true)]
+[pause()]
+nbbb
+sss 
 
-
--> uid://nbcciyufjgou # 飛ぶシーン
+-> uid://nbcciyufjgou
