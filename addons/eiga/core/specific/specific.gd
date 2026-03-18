@@ -3,7 +3,7 @@ class_name EigaSpecific
 
 const EIGA_SCRIPT_EXT := "e"
 const EIGA_SCRIPT_RESOURCE := "EigaScript"
-const FUNCTIONS := ["show", "move", "wait", "pause", "term", "zoom"]
+const FUNCTIONS := ["show", "wait", "pause", "term", "call"]
 
 enum Action {
 	NONE,
@@ -13,9 +13,8 @@ enum Action {
 
 enum Function {
 	SHOW,
-	MOVE,
 	WAIT,
 	PAUSE,
-	TERM,
-	ZOOM
+	CALL,
+	TERM
 }

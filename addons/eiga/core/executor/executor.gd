@@ -1,5 +1,6 @@
 extends Node
 class_name Executor
+signal func_called(func_name: String, args: Array)
 signal add_text(serif: String)
 signal init_text
 signal speaker_changed(speaker: String)
@@ -27,10 +28,12 @@ func execute() -> void:
 						EigaSpecific.Function.SHOW:
 							add_text.emit(s.args[0])
 						EigaSpecific.Function.WAIT:
-							wait.emit(float(s.args[0]))
+							wait.emit(s.args[0])
 							await waited
 						EigaSpecific.Function.PAUSE:
 							await next
+						EigaSpecific.Function.CALL:
+							func_called.emit(s.args[0], s.args.slice(1, s.args.size()))
 			EigaSpecific.Action.TRANS:
 				scene_trans.emit(inst.info.value)
 		current_pos += 1

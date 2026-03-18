@@ -1,8 +1,5 @@
 [gd_scene format=3 uid="uid://dp11jn1iix2ys"]
 
-[ext_resource type="Script" uid="uid://dcul0pf1rnh4g" path="res://addons/eiga/modules/eiga_character.gd" id="1_ifbh0"]
-
-[node name="EigaCharacter" type="CharacterBody2D" unique_id=1734779954]
-script = ExtResource("1_ifbh0")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=955934064]
+[node name="EigaCharacter" type="Control" unique_id=516430625]
+layout_mode = 3
+anchors_preset = 0

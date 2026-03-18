@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c0re8m2hds6lk"]
+
+[ext_resource type="Script" uid="uid://c3uqfuok3ub33" path="res://eiga.gd" id="1_4uc3s"]
+[ext_resource type="Resource" uid="uid://c3k6io2o2v0g" path="res://sample.e" id="2_rxi5t"]
+[ext_resource type="Script" uid="uid://c8os7yfkq526v" path="res://character_a.gd" id="3_37fld"]
+[ext_resource type="Script" uid="uid://dcul0pf1rnh4g" path="res://addons/eiga/modules/eiga_character.gd" id="4_3kgf7"]
+
+[node name="Eiga" type="Control" unique_id=1751925509]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_4uc3s")
+eiga_script = ExtResource("2_rxi5t")
+metadata/_custom_type_script = "uid://b18lhaal84yvb"
+
+[node name="CharacterA" type="Control" parent="." unique_id=423015725]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_37fld")
+show_name = "キャラクター1"
+metadata/_custom_type_script = "uid://dcul0pf1rnh4g"
+
+[node name="CharacterB" type="Control" parent="." unique_id=82197517]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_3kgf7")
+show_name = "キャラクター2"
+metadata/_custom_type_script = "uid://dcul0pf1rnh4g"

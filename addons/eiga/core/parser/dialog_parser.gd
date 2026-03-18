@@ -73,20 +73,19 @@ static func parse(text: String) -> Array[EigaDialogueScriptInfo]:
 						paren_depth -= 1
 						current += ch
 					elif ch == "," and paren_depth == 0:
-						args.append(current.strip_edges())
+						args.append(_convert(current))
 						current = ""
 					else:
 						current += ch
 			if current.strip_edges() != "":
-				args.append(current.strip_edges())
+				args.append(_convert(current))
 			var func_enum := EigaSpecific.Function.SHOW
 			match name:
 				"show": func_enum = EigaSpecific.Function.SHOW
-				"move": func_enum = EigaSpecific.Function.MOVE
 				"wait": func_enum = EigaSpecific.Function.WAIT
 				"pause": func_enum = EigaSpecific.Function.PAUSE
 				"term": func_enum = EigaSpecific.Function.TERM
-				"zoom": func_enum = EigaSpecific.Function.ZOOM
+				"call": func_enum = EigaSpecific.Function.CALL
 			res.append(EigaDialogueScriptInfo.new(func_enum, args, wait_flag))
 		else:
 			buffer += c
@@ -97,4 +96,31 @@ static func parse(text: String) -> Array[EigaDialogueScriptInfo]:
 			[buffer],
 			true
 		))
+	for r in res:
+		if r.function == EigaSpecific.Function.SHOW:
+			r.args[0] = r.args[0].lstrip("\n")
+			break
+	for idx in range(len(res)-1, 0, -1):
+		if res[idx].function == EigaSpecific.Function.SHOW:
+			res[idx].args[0] = res[idx].args[0].rstrip("\n")
+			break
 	return res
+
+static func _convert(text: String) -> Variant:
+	var s := text.strip_edges()
+	if s.begins_with("\""):
+		return (s.lstrip("\"").rstrip("\""))
+	else:
+		if s.is_valid_int():
+			return int(s)
+		elif s.is_valid_float():
+			return float(s)
+		elif s =="true":
+			return true
+		elif s == "false":
+			return false
+		elif s == "null":
+			return null
+		else:
+			push_error("Unknown keyword: `%s`" % s)
+			return null

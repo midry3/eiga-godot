@@ -5,7 +5,7 @@ extends Node2D
 @onready var label := $Label
 
 func _ready():
-	eiga.run_deferred()
+	eiga.run()
 
 func _on_eiga_scene_trans(scene):
 	get_tree().change_scene_to_file(scene)

@@ -17,8 +17,7 @@ static func parse(path: String) -> Array[EigaScriptInstruction]:
 		if script.is_empty():
 			continue
 		if script.begins_with("@"):
-			# 直前のダイアログを閉じる
-			if not res.is_empty():
+			if !res.is_empty():
 				var last := res.back() as EigaScriptInstruction
 				if last.action == EigaSpecific.Action.START_DIALOG:
 					last.info.value = last.info.value.strip_edges(false)
