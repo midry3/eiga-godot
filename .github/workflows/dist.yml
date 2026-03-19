@@ -30,7 +30,7 @@ jobs:
       - name: Packing
         env:
           VERSION: ${{ github.event.inputs.version }}
-        run: zip -r "eiga-v$VERSION.zip" example/addons
+        run: zip -r "eiga-v$VERSION.zip" eiga/
 
       - name: Release
         env:
