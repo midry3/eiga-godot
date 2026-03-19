@@ -50,9 +50,11 @@ func save_all() -> void:
 		save(k)
 
 func save(res: EigaLang) -> void:
-	var f := FileAccess.open(res.resource_path, FileAccess.WRITE)
-	f.store_string(opening[res].text)
-	EditorInterface.get_resource_filesystem().reimport_files([res.resource_path])
+	if FileAccess.file_exists(res.resource_path):
+		var f := FileAccess.open(res.resource_path, FileAccess.WRITE)
+		f.store_string(opening[res].text)
+		f.close()
+		EditorInterface.get_resource_filesystem().reimport_files([res.resource_path])
 
 func add_font_size(delta: int) -> void:
 	current_font_size += delta

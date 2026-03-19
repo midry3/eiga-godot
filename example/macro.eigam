@@ -1,9 +1,8 @@
-macroA(a, b) {
-A
-[&call("CharacterA.pr", $a, $b)]
+macroA {
+[&call("CharacterA.pr", "A", 5)]
 <macroB>
 }
 
 macroB {
-[call("CharacterA.pr", "b", 1.0)]
+[call("CharacterA.pr", "B", 1.0)]B
 }

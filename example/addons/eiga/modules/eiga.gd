@@ -52,7 +52,7 @@ func _run() -> void:
 			if wait:	
 				while !_calls_finished[idx]:
 					await get_tree().create_timer(0.5).timeout
-			await get_tree().create_timer(0.1).timeout
+			await get_tree().process_frame
 			executor.call_finished.emit()
 	)
 	executor.wait_all_call.connect(
@@ -88,7 +88,7 @@ func emit_next() -> void:
 		executor.next.emit()
 
 func emit_added_text() -> void:
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().process_frame
 	added_text.emit()
 
 func _input(event):

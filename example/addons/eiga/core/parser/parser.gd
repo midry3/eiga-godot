@@ -10,6 +10,7 @@ static func parse(path: String) -> EigaLang:
 	if f == null:
 		return none
 	var raw_text := f.get_as_text()
+	f.close()
 	var scripts: Array[EigaLangInstruction] = []
 	var last_speaker := ""
 	var line := 0

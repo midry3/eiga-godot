@@ -1,6 +1,7 @@
 @CharacterA
 テキスト1
-<macroA("a", 1)>
+<macroA>
+[pause()]
 テキスト2
 
 -> uid://nbcciyufjgou

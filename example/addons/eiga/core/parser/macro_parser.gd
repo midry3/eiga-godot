@@ -8,6 +8,7 @@ static func parse(path: String) -> EigaMacro:
 	if f == null:
 		return none
 	var raw_text := f.get_as_text()
+	f.close()
 	var line := 1
 	var macros: Dictionary[String, EigaMacroInfo] = {}
 	var in_block := false
