@@ -14,7 +14,7 @@ func _disable_plugin():
 	pass
 	
 func _handles(object):
-	return object is EigaLang
+	return object is EigaLang or object is EigaMacro
 
 func _edit(object):
 	_make_visible(true)

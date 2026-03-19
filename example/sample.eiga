@@ -1,7 +1,6 @@
 @CharacterA
 テキスト1
-[&call("CharacterA.pr", "a", 3)]
-[pause()]
+<macroA("a", 1)>
 テキスト2
 
 -> uid://nbcciyufjgou

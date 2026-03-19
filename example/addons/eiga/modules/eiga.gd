@@ -5,8 +5,10 @@ signal add_text(text: String)
 signal added_text
 signal init_text
 signal speaker_changed(speaker: String)
+signal dialogue_finished
 
-@export var eiga_script: EigaLang
+@export var eiga_lang: EigaLang
+@export var include_eiga_macros: Array[EigaMacro]
 
 var current_pos := 0
 var executor: Executor
@@ -18,7 +20,7 @@ func run() -> void:
 	call_deferred("_run")
 
 func _run() -> void:
-	executor = Executor.new(eiga_script)
+	executor = Executor.new(eiga_lang, include_eiga_macros)
 	executor.scene_trans.connect(scene_trans.emit)
 	executor.add_text.connect(
 		func(text: String):
@@ -57,6 +59,7 @@ func _run() -> void:
 		func():
 			_wait_all_call_finished = true
 	)
+	executor.dialogue_finished.connect(dialogue_finished.emit)
 	executor.execute()
 	
 func get_character(chara_name: String) -> EigaCharacter:

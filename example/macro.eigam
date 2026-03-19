@@ -1,0 +1,9 @@
+macroA(a, b) {
+A
+[&call("CharacterA.pr", $a, $b)]
+<macroB>
+}
+
+macroB {
+[call("CharacterA.pr", "b", 1.0)]
+}

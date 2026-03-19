@@ -18,13 +18,13 @@ func _get_line_syntax_highlighting(line: int) -> Dictionary:
 		var c := text[i]
 		if c == "[":
 			colors[i] = {
-				"color": hilight_settings.large_bracket_color,
+				"color": hilight_settings.call_sign_color,
 				"length": 1
 			}
 			var j := i + 1
 			while j < length and _is_whitespace(text[j]):
 				j += 1
-			if text[j] == "&":
+			if j < length and text[j] == "&":
 				colors[j] = {
 					"color": hilight_settings.async_call_color,
 					"length": 1
@@ -41,10 +41,44 @@ func _get_line_syntax_highlighting(line: int) -> Dictionary:
 			i = j
 		elif c == "]":
 			colors[i] = {
-				"color": hilight_settings.large_bracket_color,
+				"color": hilight_settings.call_sign_color,
 				"length": 1
 			}
 			i += 1
+		elif c == "<":
+			colors[i] = {
+				"color": hilight_settings.macro_sign_color,
+				"length": 1
+			}
+			var j := i + 1
+			while j < length and _is_whitespace(text[j]):
+				j += 1
+			var start := j
+			while j < length and text[j] != "(" and text[j] != ">":
+				j += 1
+			if start < j:
+				colors[start] = {
+					"color": hilight_settings.macro_color,
+					"length": j - start
+				}
+			i = j
+		elif c == ">":
+			colors[i] = {
+				"color": hilight_settings.macro_sign_color,
+				"length": 1
+			}
+			i += 1
+		elif c == "$":
+			var j := i + 1
+			var start := i
+			while j < length and !_is_separete(text[j]):
+				j += 1
+			if start < j:
+				colors[start] = {
+					"color": hilight_settings.macro_variable_color,
+					"length": j - start
+				}
+			i = j
 		elif c == "\"":
 			var j := i + 1
 			var start := i

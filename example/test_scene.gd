@@ -10,7 +10,6 @@ func _ready():
 func _on_eiga_scene_trans(scene):
 	get_tree().change_scene_to_file(scene)
 
-
 func _on_eiga_add_text(text):
 	for t in text:
 		script_.text += t
@@ -23,3 +22,7 @@ func _on_eiga_init_text():
 
 func _on_eiga_speaker_changed(speaker):
 	label.text = speaker
+
+
+func _on_eiga_dialogue_finished():
+	print("fin!")

@@ -1,7 +1,7 @@
 extends Node
-class_name EigaDialogParser
+class_name EigaDialogueParser
 
-static func parse(text: String) -> Array[EigaDialogueScriptInfo]:
+static func parse(text: String, macros: Dictionary[String, EigaMacroInfo]) -> Array[EigaDialogueScriptInfo]:
 	var res: Array[EigaDialogueScriptInfo] = []
 	var i := 0
 	var buffer := ""
@@ -86,6 +86,78 @@ static func parse(text: String) -> Array[EigaDialogueScriptInfo]:
 				"pause": func_enum = EigaSpecific.Function.PAUSE
 				"call": func_enum = EigaSpecific.Function.CALL
 			res.append(EigaDialogueScriptInfo.new(func_enum, args, wait_flag))
+		elif c == "<":
+			var start := i
+			var depth := 1
+			i += 1
+			while i < text.length() and depth > 0:
+				if text[i] == "<":
+					depth += 1
+				elif text[i] == ">":
+					depth -= 1
+				i += 1
+			if depth != 0:
+				buffer += text.substr(start, i - start)
+				continue
+			var block := text.substr(start, i - start)
+			if buffer != "":
+				res.append(EigaDialogueScriptInfo.new(
+					EigaSpecific.Function.SHOW,
+					[buffer],
+					true
+				))
+				buffer = ""
+			var inner := block.substr(1, block.length() - 2).strip_edges()
+			var p := inner.find("(")
+			var q := inner.rfind(")")
+			if p * q < 0:
+				res.append(EigaDialogueScriptInfo.new(
+					EigaSpecific.Function.SHOW,
+					[block],
+					true
+				))
+				continue
+			var name := inner.substr(0, p).strip_edges()
+			var args_str := inner.substr(p + 1, q - p - 1)
+			if !macros.has(name):
+				res.append(EigaDialogueScriptInfo.new(
+					EigaSpecific.Function.SHOW,
+					[block],
+					true
+				))
+				continue
+			elif p == -1 and q == -1:
+				res.append_array(parse(macros[name].build([]), macros))
+				continue
+			var args := []
+			var current := ""
+			var in_string := false
+			var quote_char := ""
+			var paren_depth := 0
+			for ch in args_str:
+				if in_string:
+					current += ch
+					if ch == quote_char:
+						in_string = false
+				else:
+					if ch == "\"" or ch == "'":
+						in_string = true
+						quote_char = ch
+						current += ch
+					elif ch == "(":
+						paren_depth += 1
+						current += ch
+					elif ch == ")":
+						paren_depth -= 1
+						current += ch
+					elif ch == "," and paren_depth == 0:
+						args.append(_convert(current))
+						current = ""
+					else:
+						current += ch
+			if current.strip_edges() != "":
+				args.append(_convert(current))
+			res.append_array(parse(macros[name].build(args), macros))
 		else:
 			buffer += c
 			i += 1
