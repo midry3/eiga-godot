@@ -1,0 +1,14 @@
+[remap]
+
+importer="eiga"
+type="Resource"
+uid="uid://bhpfvv6j8jstq"
+path="res://.godot/imported/sample.eiga-22c059a7ba52c0e968ec57b8427b3a4a.tres"
+
+[deps]
+
+source_file="res://sample.eiga"
+dest_files=["res://.godot/imported/sample.eiga-22c059a7ba52c0e968ec57b8427b3a4a.tres"]
+
+[params]
+

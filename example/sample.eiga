@@ -1,8 +1,7 @@
 @CharacterA
-aaaaa
+テキスト1
 [&call("CharacterA.pr", "a", 3)]
 [pause()]
-nbbb
-sss 
+テキスト2
 
 -> uid://nbcciyufjgou

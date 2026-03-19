@@ -2,7 +2,7 @@ extends Control
 class_name EigaLangEditor
 
 var tabs: TabContainer
-var opening
+var opening: Dictionary[EigaLang, CodeEdit]
 var current_font_size: int
 
 func _init(default_font_size: int):
@@ -21,21 +21,21 @@ func _ready():
 			var c := tabs.get_child(idx)
 			for k in opening:
 				if opening[k] == c:
-					opening.erase(k)
 					save(k)
+					opening.erase(k)
 					break
 			tabs.remove_child(c)
 			c.queue_free()
 	)
 	add_child(tabs)
 
-func open(res) -> void:
+func open(res: EigaLang) -> void:
 	if opening.has(res):
 		tabs.current_tab = opening[res].get_index()
 	else:
 		var code_edit := CodeEdit.new()
 		tabs.add_child(code_edit)
-		code_edit.syntax_highlighter = EigaScriptHighlighter.new()
+		code_edit.syntax_highlighter = EigaLangHighlighter.new()
 		code_edit.text = res.raw_text
 		code_edit.set_anchors_preset(Control.PRESET_FULL_RECT)
 		code_edit.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -49,9 +49,10 @@ func save_all() -> void:
 	for k in opening.keys():
 		save(k)
 
-func save(res) -> void:
+func save(res: EigaLang) -> void:
 	var f := FileAccess.open(res.resource_path, FileAccess.WRITE)
 	f.store_string(opening[res].text)
+	EditorInterface.get_resource_filesystem().reimport_files([res.resource_path])
 
 func add_font_size(delta: int) -> void:
 	current_font_size += delta

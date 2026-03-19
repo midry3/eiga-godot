@@ -2,7 +2,7 @@ extends Node
 class_name EigaSpecific
 
 const PLUGIN_NAME := "Eiga"
-const EIGA_SCRIPT_EXT := "e"
+const EIGA_SCRIPT_EXT := "eiga"
 const EIGA_SCRIPT_RESOURCE := "EigaLang"
 const FUNCTIONS := ["show", "wait", "pause", "call"]
 

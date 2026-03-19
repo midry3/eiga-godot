@@ -22,6 +22,7 @@ func _edit(object):
 
 func _save_external_data():
 	editor.save_all()
+	get_editor_interface()
 
 func _enter_tree():
 	importer = EigaLangImporter.new()
