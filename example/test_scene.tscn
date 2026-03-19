@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b1rjg3ln2kdhl"]
+
+[ext_resource type="Script" uid="uid://dfyw1jaft3ty5" path="res://test_scene.gd" id="1_ia1lp"]
+[ext_resource type="PackedScene" uid="uid://c0re8m2hds6lk" path="res://dialog.tscn" id="2_sasra"]
+[ext_resource type="Resource" uid="uid://bhpfvv6j8jstq" path="res://sample.eiga" id="3_sasra"]
+[ext_resource type="Script" uid="uid://kse6f30uifuw" path="res://addons/eiga/core/specific/eiga_macro.gd" id="4_2nij2"]
+[ext_resource type="Resource" uid="uid://bn60aelxwdmu7" path="res://macro.eigam" id="5_7cbxl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sasra"]
+bg_color = Color(0, 0, 0, 0.5176471)
+
+[node name="TestScene" type="Node2D" unique_id=1386669705]
+script = ExtResource("1_ia1lp")
+
+[node name="Eiga" parent="." unique_id=1751925509 instance=ExtResource("2_sasra")]
+eiga_lang = ExtResource("3_sasra")
+include_eiga_macros = Array[ExtResource("4_2nij2")]([ExtResource("5_7cbxl")])
+
+[node name="Script" type="RichTextLabel" parent="." unique_id=675756514]
+offset_top = 299.0
+offset_right = 1153.0
+offset_bottom = 642.0
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_sasra")
+
+[node name="Label" type="Label" parent="." unique_id=1142598723]
+offset_left = 20.0
+offset_top = 216.0
+offset_right = 185.0
+offset_bottom = 299.0
+theme_override_font_sizes/font_size = 60
+text = "aaa"
+
+[connection signal="add_text" from="Eiga" to="." method="_on_eiga_add_text"]
+[connection signal="dialogue_finished" from="Eiga" to="." method="_on_eiga_dialogue_finished"]
+[connection signal="init_text" from="Eiga" to="." method="_on_eiga_init_text"]
+[connection signal="scene_trans" from="Eiga" to="." method="_on_eiga_scene_trans"]
+[connection signal="speaker_changed" from="Eiga" to="." method="_on_eiga_speaker_changed"]

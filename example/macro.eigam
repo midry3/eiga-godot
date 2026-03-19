@@ -1,0 +1,8 @@
+macroA {
+[&call("CharacterA.pr", "A", 5)]
+<macroB>
+}
+
+macroB {
+[call("CharacterA.pr", "B", 1.0)]B
+}

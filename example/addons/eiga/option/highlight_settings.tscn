@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dm075khruvehf"]
+
+[ext_resource type="Script" uid="uid://wyrc0uexxr8l" path="res://addons/eiga/option/highlight_settings.gd" id="1_ok5ao"]
+
+[node name="HighlightSettings" type="Control" unique_id=5544476]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ok5ao")
