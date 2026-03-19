@@ -32,7 +32,7 @@
 ```
 
 # サンプル
-[応用](./EXAMPLE.md)のEigaLangにマクロを適用してみます。
+[応用](./EXAMPLE.md#応用)のEigaLangにマクロを適用してみます。
 
 ```:main.eigam
 rotate_rect {
