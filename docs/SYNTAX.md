@@ -3,60 +3,37 @@
 ```
 @EigaCharacterのノード名
 スクリプト
-
 ...
 
 -> 遷移先のシーン
 ```
 
 # `@`構文
-`@EigaCharacterのノード名`で新規テキストボックスで表示
+`@EigaCharacterのノード名`と書くと`init_text`イベントが起き、新しい会話が始まります。
+話者として表示されるのはここで書いた名前ではなく、 **指定した`EigaCharacter`の`show_name`で指定された名前** です。
 
 # `->`構文
-`-> シーン`で、読み込むシーンを指定します
+`-> シーン`で遷移するシーンを指定します
 `UID`での指定をおすすめします
 
-なお、実際には`scene_load`シグナルが発生しており、このシグナルと接続して処理することになります
+なお、実際には`scene_load`シグナルを起こすだけであり、実際のシーン遷移の処理はこのシグナルに接続して処理することになります
 
 # スクリプトにおける特殊関数
-[関数名(引数1, 引数2, ...)]で呼び出す
-[&関数名(引数1, 引数2, ...)]とすると非同期で、つまり処理を待たずにテキストを進めます
+`[関数名(引数1, 引数2, ...)]`で、特殊な関数を呼び出します。
 
-## 関数紹介
-- move("Animation Name", Velocity.x, Velocity.y, Time)
-アニメーション名`Animation Name`を再生しつつ、Velocityの速度でTime秒間動く
+## `wait(time: float)`関数
+`time`秒待ちます。
 
-- call("Function Name", Arg1, Arg2, ...)
-関数名`Function Name`を引数を渡しつつ呼ぶ
-特定のキャラクターの関数を呼びたいときは`EigaCharacterのノード名:関数名`で指定
+## `pause()`関数
+次に`next`シグナルが発生するまで待機します。
 
-- pause()
-クリック待ち
+## `call("Function Name", Arg1, Arg2, ...)`関数
+`Eiga`ノードにアタッチした`GDScript`に定義した関数`Function Name`を、引数を渡しつつ呼びます。
 
-- wait(Time)
-Time秒待つ
+特定の子ノードの関数を呼びたいときは`子ノード名.関数名`で指定します。
 
-- term()
-現在処理中の非同期処理を全てキルし、最終値にする
+## `&call("Function Name", Arg1, Arg2, ...)`関数
+`call`関数の直前に`&`を付けると非同期呼び出し、つまり呼び出した関数の終わりを待たずに次のスクリプトを読みます。ただし整合性のため、非同期で呼び出した関数が全て終えるまで話者は切り替わりません。
 
-# 例
-```
-@CharacterA
-テスト
-
-@CharacterB
-[move("right", 2, 100)]
-例えば[wait(0.5)].[wait(.5)].[wait(.5)].
-
-@-
-[&move("right", 3, 200)]
-ajsiojsoisjoisjslilslinsjlknmk
-[pause()]jisjosjoisjosk
-[term()]だ！
-
-
-@
-[zoom(x, y, scale)]
-
--> uid://nbcciyufjgou # 飛ぶシーン
-```
+# サンプル
+[サンプル](./EXAMPLE.md)をご覧ください。
