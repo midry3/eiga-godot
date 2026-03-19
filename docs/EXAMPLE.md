@@ -99,7 +99,7 @@ func _on_speaker_changed(speaker):
 # 応用
 `CharacterA`と`CharacterB`のスクリプトを拡張して、それぞれ以下のようにします。
 
-```gdscript:character_a.gd
+```gdscript
 extends EigaCharacter
 
 func move_x(dx: int) -> void:
@@ -108,7 +108,7 @@ func move_x(dx: int) -> void:
 	await t.finished
 ```
 
-```gdscript:character_b
+```gdscript
 extends EigaCharacter
 
 @onready var label := $Label
@@ -122,7 +122,7 @@ func move_y(dy: int, finished_text: String) -> void:
 
 追加で`Dialog`のスクリプトをさらに拡張します。
 
-```gdscript:main_dialog.gd
+```gdscript
 extends "res://eiga/dialog.gd"
 
 @onready var rect := $ColorRect
