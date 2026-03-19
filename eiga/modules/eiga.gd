@@ -4,7 +4,7 @@ signal scene_trans(scene: StringName)
 signal add_text(text: String)
 signal added_text
 signal init_text
-signal speaker_changed(speaker: String)
+signal speaker_changed(speaker: EigaCharacter)
 signal dialogue_finished
 
 @export var eiga_lang: EigaLang
@@ -35,9 +35,9 @@ func _run() -> void:
 			_calls_finished.clear()
 			_wait_all_call_finished = false
 			if speaker == "":
-				speaker_changed.emit("")
+				speaker_changed.emit(EigaCharacter.new())
 			else:
-				speaker_changed.emit(get_character(speaker).show_name)
+				speaker_changed.emit(get_character(speaker))
 	)
 	executor.wait.connect(
 		func(time: float):

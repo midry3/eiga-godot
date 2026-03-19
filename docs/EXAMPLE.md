@@ -25,7 +25,7 @@ func _on_init_text():
 	text_label.text = ""
 
 func _on_speaker_changed(speaker):
-	speaker_label.text = speaker
+	speaker_label.text = speaker.show_name
 ```
 
 # イベントの接続
@@ -36,7 +36,7 @@ func _on_speaker_changed(speaker):
 | `add_text(text: String)` | テキストボックスに追加される文字列が渡されます。**最後に`emit_added_text()`関数を呼んでください！** |
 | `init_text()` | テキストボックスの初期化時に呼ばれます |
 | `scene_trans` | `->`によって指定されたシーンが渡されます |
-| `speaker_changed(speaker: String)` | 話者が渡されます |
+| `speaker_changed(speaker: EigaCharacter)` | 話者の`EigaCharacter`が渡されます |
 
 # 話者を作る
 それでは実際に会話を作っていきましょう。
