@@ -1,0 +1,40 @@
+name: GitHub Actions for distribution
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  distribute:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create a new tag
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+        run: |
+          git fetch --tags --force
+          git tag "$VERSION"
+          git push origin "$VERSION"
+
+      - name: Packing
+        env:
+          VERSION: ${{ github.event.inputs.version }}
+        run: zip -r example/addons "eiga-v$VERSION.zip"
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ github.event.inputs.version }}
+        run: |
+          gh release create "$VERSION" "eiga-v$VERSION.zip" --title "Release v$VERSION" --generate-notes
