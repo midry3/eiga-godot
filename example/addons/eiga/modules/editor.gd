@@ -1,5 +1,5 @@
 extends Control
-class_name EigaScriptEditor
+class_name EigaLangEditor
 
 var tabs: TabContainer
 var opening

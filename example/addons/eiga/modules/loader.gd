@@ -1,5 +1,5 @@
 extends ResourceFormatLoader
-class_name  EigaScriptLoader
+class_name  EigaLangLoader
 
 func _get_recognized_extensions():
 	return [EigaSpecific.EIGA_SCRIPT_EXT]

@@ -12,11 +12,11 @@ signal waited
 signal wait_all_call
 signal call_finished
 
-var eiga_script: EigaScript
+var eiga_script: EigaLang
 var current_pos := 0
 var can_next := true
 
-func _init(eiga_script: EigaScript):
+func _init(eiga_script: EigaLang):
 	self.eiga_script = eiga_script
 
 func execute() -> void:

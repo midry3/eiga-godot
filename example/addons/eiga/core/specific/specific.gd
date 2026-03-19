@@ -3,7 +3,7 @@ class_name EigaSpecific
 
 const PLUGIN_NAME := "Eiga"
 const EIGA_SCRIPT_EXT := "e"
-const EIGA_SCRIPT_RESOURCE := "EigaScript"
+const EIGA_SCRIPT_RESOURCE := "EigaLang"
 const FUNCTIONS := ["show", "wait", "pause", "call"]
 
 enum Action {

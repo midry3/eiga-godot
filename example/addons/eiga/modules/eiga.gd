@@ -6,7 +6,7 @@ signal added_text
 signal init_text
 signal speaker_changed(speaker: String)
 
-@export var eiga_script: EigaScript
+@export var eiga_script: EigaLang
 
 var current_pos := 0
 var executor: Executor

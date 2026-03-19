@@ -1,5 +1,5 @@
 extends Resource
-class_name EigaScriptInstruction
+class_name EigaLangInstruction
 
 @export var action: EigaSpecific.Action
 @export var info: EigaDialogueInfo

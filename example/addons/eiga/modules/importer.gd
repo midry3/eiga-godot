@@ -1,11 +1,11 @@
 extends EditorImportPlugin
-class_name EigaScriptImporter
+class_name EigaLangImporter
 
 func _get_importer_name():
 	return "eiga"
 	
 func _get_visible_name():
-	return "Eiga Script"
+	return "Eiga Lang"
 	
 func _get_recognized_extensions():
 	return [EigaSpecific.EIGA_SCRIPT_EXT]
