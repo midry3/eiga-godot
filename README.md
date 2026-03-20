@@ -11,3 +11,4 @@ Read [here](README_en.md).
 - [導入方法](docs/INSTALL.md)
 - [言語仕様](docs/SYNTAX.md)
 - [マクロの書き方](docs/MACRO.md)
+- [VScode用拡張機能](https://github.com/midry3/eiga-vscode)
